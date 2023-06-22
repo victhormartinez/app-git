@@ -1,0 +1,26 @@
+# Nombre del flujo de trabajo
+name: Node.js CI
+# Eventos que desencadenarán este flujo de trabajo
+on: [push, pull_request]
+# Conjunto de trabajos que se ejecutarán
+jobs:
+# Nombre del trabajo
+build:
+# Tipo de máquina virtual en la que se ejecutará el trabajo
+runs-on: ubuntu-latest
+# Pasos que se ejecutarán en el trabajo
+steps:
+# Acceso al contenido del repositorio
+- uses: actions/checkout@v2
+# Nombre del siguiente paso
+- name: Use Node.js
+# Configura un entorno Node.js
+uses: actions/setup-node@v2
+# Comando para instalar las dependencias del proyecto
+- run: npm ci
+# Comando para correr los tests del proyecto
+- run: npm run test
+# Define las variables de entorno para el paso
+env:
+# Establece el entorno de integración continua
+CI: true
